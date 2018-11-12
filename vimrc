@@ -42,7 +42,7 @@ fun! s:EnsureVamIsOnDisk(plugin_root_dir)
   endif
 endfun
 
-fun! s:SetupVAM()
+fun! s:SetupVAM(setup_dir)
   if !exists("g:vim_addon_manager")
     set noswapfile
     let g:vim_addon_manager = {
@@ -51,7 +51,7 @@ fun! s:SetupVAM()
       \ 'shell_commands_run_method': 'system',
       \ 'auto_install': 1,
       \ 'plugin_sources': {},
-      \ 'plugin_root_dir': fnamemodify($MYVIMRC, ":h"),
+      \ 'plugin_root_dir': a:setup_dir.'/vim-addons',
     \ }
   endif
   let c = g:vim_addon_manager
@@ -61,7 +61,7 @@ fun! s:SetupVAM()
   endif
 
   let &rtp.=(empty(&rtp)?'':',').c.plugin_root_dir.'/vim-addon-manager'
-  let scripts = readfile(c.plugin_root_dir.'/vim-plugins.file')
+  let scripts = readfile(a:setup_dir.'/vim-plugins.file')
   let scripts = map(filter(scripts, 'v:val !~ "\\v^\\s*$|^\\s*#"'), 'eval(v:val)')
   for l in filter(copy(scripts), 'type(v:val) == type({}) && has_key(v:val, "url")')
     let c.plugin_sources[l.name] = l
@@ -69,7 +69,7 @@ fun! s:SetupVAM()
   call vam#Scripts(scripts, {'tag_regex': '.*'})
   unlet scripts
 endfun
-call <SID>SetupVAM()
+call <SID>SetupVAM(expand("<sfile>:h"))
 
 
 finish "{{{1
