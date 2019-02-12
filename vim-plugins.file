@@ -18,6 +18,7 @@
 "Solarized"
 "vim-airline"
 "VimTweak"
+"Markdown_syntax"
 
 {'name': 'vimcdoc',     'url': 'https://github.com/yianwillis/vimcdoc',         'type': 'git'}
 {'name': 'learnvim',    'url': 'https://github.com/dahu/LearnVim',              'type': 'git'}
@@ -28,6 +29,7 @@
 {'name': 'ctrlp',       'url': 'https://github.com/ctrlpvim/ctrlp.vim',         'type': 'git'}
 {'name': 'matchup',     'url': 'https://github.com/andymass/vim-matchup',       'type': 'git'}
 {'name': 'easymotion',  'url': 'https://github.com/easymotion/vim-easymotion',  'type': 'git'}
+{'name': 'previm',      'url': 'https://github.com/Kamker/previm',              'type': 'git'}
 
 # This will be loaded when you open scratch
 {'name': 'Tabular', 'filename_regex': '[\/]__Scratch__$'}
